@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin:20px auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .main{
+            height: 300px;
+            width: 700px;
+            border: 3px solid black;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin:0px auto;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 10px;
+            background-color: aqua;
+        }
+        .op{
+            display: flex;
+            gap: 20px;
+            margin:50px auto;
+            padding:30px auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input{
+            font-size: 16px;
+            border-radius: 30px;
+            height: 40px;
+            padding: 0px 20px;
+            /* background-color:blueviolet; */
+            font-family: sans-serif;
+        }
+        label{
+            font-size: 21px;
+            font-family: sans-serif;
+            font-weight: 700;
+        }
+        button{
+            height: 40px;
+            width: 80px;
+            font-size: 23px;
+            font-family: sans-serif;
+            font-weight: 700;
+            background-color: brown;
+        }
+        ::placeholder{
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>CALCULATOR</h1>
+    <div class="main">
+        <h2>The out is : <span class="span">0</span></h2>
+        <form class="form">
+           <div class="input">
+           <label for="in1">Input 1 : </label>
+           <input class="input inp1"  id="in1" placeholder="Enter Numbers">
+           <label for="in2">Input 2 : </label>
+           <input class="input inp2"  id="in2" placeholder="Enter Numbers">
+           </div>
+           <div class="op">
+            <button type="submit" value="+"> + </button>
+            <button type="submit" value="-"> - </button>
+            <button type="submit" value="*"> * </button>
+            <button type="submit" value="/"> / </button>
+            <button type="submit" value="%"> % </button>
+           </div>
+        </form>
+        <script>
+            let body=document.body;
+            let h2=document.querySelector('h2');
+            let inp1=document.querySelector('#in1');
+            let inp2=document.querySelector('#in2');
+            let form=document.querySelector('.form');
+            let resultSpan = document.querySelector('.span');
+            form.addEventListener('submit',(e)=>{
+                e.preventDefault();
+                let span=document.createElement('span')
+                let num1=Number(inp1.value)
+                let num2=Number(inp2.value)
+                let operator=e.submitter.value;
+                let result;
+                if (!inp1.value || !inp2.value) {
+                    resultSpan.textContent = "Enter numbers!";
+                    return;
+                }
+                if(operator==="+"){
+                    result=num1+num2
+                }
+                else if(operator==='-'){
+                    result=num1-num2
+                }
+                else if(operator==='*'){
+                    result=num1*num2
+                }
+                else if(operator==='/'){
+                    if(num2==0){
+                        result='Error'; 
+                    }
+                    else{
+                        result=num1/num2
+                    }
+                }
+                else if(operator==='%'){
+                    result=num1%num2
+                }
+                resultSpan.textContent=result;
+                inp1.value='';
+                inp2.value='';
+            })
+        </script>
+    </div>
+</body>
+</html>
